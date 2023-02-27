@@ -3,7 +3,7 @@ pipeline {
 	stages {
 		stage('Clone git') {
 			steps{
-				git branch: 'master', url: 'https://github.com/Vancong01/jenkin.git'
+				git branch: 'master', url: 'https://github.com/tavancong/jenkins.git'
 			}
 		}
 		stage('Docker build and push') {
