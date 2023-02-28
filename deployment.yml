@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-app-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      bb: web
+  template:
+    metadata:
+      labels:
+        bb: web
+    spec:
+      containers:
+      - name: spring-boot-app
+        image: kenshinthuong/springboot-demo:v1
+        ports:
+            - containerPort: 8085
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: spring-boot-app-service
+    namespace: default
+spec:
+    type: NodePort
+    selector:
+        bb: web
+    ports:
+    - port: 8085
+      targetPort: 8085
+      nodePort: 31002
+
